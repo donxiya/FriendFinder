@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Survey</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container content">
+		<h1>Survey</h1>
+		<form>
+			<div class="form-group">
+				<input id="name" type="text" class="form-control" placeholder="Name (Required)">
+			</div>
+			<div class="form-group">
+				<label for="question1">I enjoy social life.</label>
+				<select class="form-control" id="question1">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question2">I seek freedom.</label>
+				<select class="form-control" id="question2">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question3">I pursuit my dream actively.</label>
+				<select class="form-control" id="question3">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question4">I don't have any mental issue. Why are you asking?</label>
+				<select class="form-control" id="question4">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question5">I hide from my problems.</label>
+				<select class="form-control" id="question5">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question6">I enjoy working under pressure.</label>
+				<select class="form-control" id="question6">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question7">I preach people about my thoughts on some art film, despite their obvious impatience.</label>
+				<select class="form-control" id="question7">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question8">I don't know how having a spirit animal can, in anyway, affect my life.</label>
+				<select class="form-control" id="question8">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question9">I have the brain cells to come up with 10 random survey questions.</label>
+				<select class="form-control" id="question9">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question10">I am dumb enough to believe this buzzfeed-like survey.</label>
+				<select class="form-control" id="question10">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+		</form>
+		<div class="text-center">
+			<button id="submitBtn" type="submit" class="btn btn-success btn-lg">Submit</button>
+		</div>
+		
+		<div id="animalResult" class="hiddenContainer" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="title">Your Spirit Animal is Revealed!</h1>
+					</div>
+					<div class="resultBody">
+						<h2 id="bestFriend"></h2>
+						<img id="bestFriendPhoto" src="#">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+	$("#submitBtn").on("click", function(event) {
+		event.preventDefault();
+		// Form validation
+		console.log("submitted");
+		var valid = true;
+		if($("#name").val() === "") {
+			valid = false;
+		} else if($("#question1").val() === "empty" || $("#question2").val() === "empty" || $("#question3").val() === "empty" || $("#question4").val() === "empty" || $("#question5").val() === "empty" || $("#question6").val() === "empty" || $("#question7").val() === "empty" || $("#question8").val() === "empty" || $("#question9").val() === "empty" || $("#question10").val() === "empty") {
+			valid = false;
+		}
+		if(valid === true) {
+
+			var newUser = {
+				name: $("#name").val().trim(),
+				scores: [
+					$("#question1").val(),
+					$("#question2").val(),
+					$("#question3").val(),
+					$("#question4").val(),
+					$("#question5").val(),
+					$("#question6").val(),
+					$("#question7").val(),
+					$("#question8").val(),
+					$("#question9").val(),
+					$("#question10").val()
+				]
+			};
+			var currentURL = window.location.origin;
+
+			// Ajax call for receiving response after POST req
+			$.post(currentURL + "/api/friends", newUser, function(data) {
+				$("#bestFriend").text(data.name);
+				$("#bestFriendPhoto").attr("src", data.photo);
+				//$("#bestFriendModal").modal("toggle");
+			});
+		} else {
+			// If a required field is missing, show alert
+			alert("The Spirit Animal Eludes You! Fill the Questions");
+		}
+	});
+</script>
